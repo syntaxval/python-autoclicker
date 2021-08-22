@@ -1,11 +1,14 @@
 import pyautogui
 from pynput.keyboard import *
+import time
 
 #  ======== settings ========
 delay = 1  # in seconds
 resume_key = Key.f1
 pause_key = Key.f2
 exit_key = Key.esc
+keys = [KeyCode.from_char(c) for c in "f"]
+keyboard = Controller()
 #  ==========================
 
 pause = True
@@ -26,7 +29,7 @@ def on_press(key):
 
 
 def display_controls():
-    print("// AutoClicker by iSayChris")
+    print("// Keyboard AutoClicker - a syntaxval modified fork of iSayChris")
     print("// - Settings: ")
     print("\t delay = " + str(delay) + ' sec' + '\n')
     print("// - Controls:")
@@ -44,8 +47,9 @@ def main():
     display_controls()
     while running:
         if not pause:
-            pyautogui.click(pyautogui.position())
-            pyautogui.PAUSE = delay
+            keyboard.press("f")
+            keyboard.release("f")
+            time.sleep(delay)
     lis.stop()
 
 
